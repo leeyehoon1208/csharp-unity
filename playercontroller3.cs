@@ -34,7 +34,11 @@ public class playercontroller3 : MonoBehaviour
     if (Input.GetKeyDown(KeyCode.Space))
     {
         GameObject bullet = Instantiate(BulletPrefab); // 총알을 복제해 생성, 그리고 그 생성된 복제 총알을 bullet이라는 변수에 담는다. 
-        bullet.transform.position = transform.position; // 총알의 첫 위치를 (0,0)
+        // bullet.transform.position = transform.position; // 총알의 첫 위치를 (0,0)
+        Vector3 bulletStartpos = transform.position + new Vector3(0,0.5f,0); //y의 위치가 0.5로 바뀐다. 
+        //Vector3 bulletStartpos = Gun.transform.position;
+        bulletStartpos.y += i * 0.3f;
+        bullet.transform.position = bulletStartpos;
         bullet.GetComponent<Rigidbody2D>().AddForce(Vector2.up * BulletSpeed); // (0,1) * 100 = (0,100)
     }
 }
