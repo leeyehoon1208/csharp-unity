@@ -2,7 +2,7 @@ using UnityEngine;
 
 public class playercontroller3 : MonoBehaviour
 {
-   
+   public float BulletSpeed = 100f;
     void Update()
     {
        if (Input.GetKey(KeyCode.A)){
@@ -30,6 +30,12 @@ public class playercontroller3 : MonoBehaviour
     if (Input.GetKey(KeyCode.D)){
         transform.Translate(speed,0,0);
         
+    }
+    if (Input.GetKeyDown(KeyCode.Space))
+    {
+        GameObject bullet = Instantiate(BulletPrefab); // 총알을 복제해 생성, 그리고 그 생성된 복제 총알을 bullet이라는 변수에 담는다. 
+        bullet.transform.position = transform.position; // 총알의 첫 위치를 (0,0)
+        bullet.GetComponent<Rigidbody2D>().AddForce(Vector2.up * BulletSpeed); // (0,1) * 100 = (0,100)
     }
 }
 }
